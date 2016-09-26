@@ -1,16 +1,6 @@
 module.exports = function(grunt) {
     // Configuration
     grunt.initConfig({
-        concat: {
-            /*js: {
-                src: ['js/*.js'],
-                dest: 'build/spiro_app.js'
-            },
-            css: {
-                src: ['css/*.css'],
-                dest: 'build/style.css'
-            }*/
-        },
         sass: {
             options: {
                 sourceMap: true
@@ -60,16 +50,6 @@ module.exports = function(grunt) {
                 }
             }
         },
-        /*uglify: {
-            build: {
-                files: [{
-                    expand: true,
-                    src: ['build/*.js', '!*.min.js'],
-                    dest: './',
-                    ext: '.min.js'
-                }]
-            }
-        },*/
         watch: {
             css: {
                 files: ['css/sass/**/*.scss'],
@@ -83,17 +63,13 @@ module.exports = function(grunt) {
     });
 
     // Load plugins
-    //grunt.loadNpmTasks('grunt-contrib-concat');
     grunt.loadNpmTasks('grunt-sass');
     grunt.loadNpmTasks('grunt-contrib-requirejs');
     grunt.loadNpmTasks('grunt-contrib-cssmin');
-    //grunt.loadNpmTasks('grunt-contrib-uglify');
     grunt.loadNpmTasks('grunt-typescript');
     grunt.loadNpmTasks('grunt-contrib-watch');
 
     // Register tasks
-    //grunt.registerTask('concat-css', ['concat:css']);
-    //grunt.registerTask('concat-js', ['concat:js']);
     grunt.registerTask('build-css', ['sass', 'cssmin']);
     grunt.registerTask('build-ts', ['typescript', 'requirejs']);
     grunt.registerTask('build', ['build-css', 'build-ts']);
