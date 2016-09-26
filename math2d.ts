@@ -148,6 +148,10 @@ class vector32 {
             this.data[i] = f(this.data[i]);
         }
     }
+
+    public abs() {
+        this.apply(Math.abs);
+    }
 }
 
 export class vec2 extends vector32 {

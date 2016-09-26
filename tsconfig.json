@@ -1,0 +1,23 @@
+{
+    "compilerOptions": {
+        "sourceMap": true,
+        "outDir": "js",
+        "target": "es5",
+        "module": "amd",
+        "noEmitOnError": false
+    },
+    "files": [
+        "app.ts",
+        "board.ts",
+        "colour.ts",
+        "common.ts",
+        "event_interface.ts",
+        "gear.ts",
+        "geom2d.ts",
+        "math.ts",
+        "math2d.ts",
+        "random.ts",
+        "slider_text.ts",
+        "spirograph.ts"
+    ]
+}

@@ -1,11 +1,10 @@
-import {Turtle} from "./turtle";
 import {EventInterface} from "./event_interface";
 import {Board, BoardSettings} from "./board";
 import {mat3, vec3, vec2} from "./math2d";
 import {Spirograph, generate_random_spirograph} from "./spirograph";
 import {SliderTextComponent} from "./slider_text";
 import {toggle_class, has_class, add_class, remove_class} from "./common";
-import {Gear} from "./gear";
+import {GearSystem} from "./gear";
 
 class SpinoGraphApp {
     private board: Board;
@@ -13,11 +12,11 @@ class SpinoGraphApp {
     private settings_panel: HTMLElement;
     private R_component: SliderTextComponent;
     private r_component: SliderTextComponent;
-    private l_component: SliderTextComponent;
-    private turtles: Array<Turtle>;
     private spiro: Spirograph;
+    private gear_system: GearSystem;
 
     constructor(canvas: HTMLCanvasElement) {
+        this.gear_system = new GearSystem();
         this.board = new Board(canvas,
             {
                 onresize: (sender: any, e: Event, w: number, h: number) => {
@@ -59,15 +58,7 @@ class SpinoGraphApp {
                 this.board.repaint();
             }
         } as EventInterface);
-        this.l_component = new SliderTextComponent(document.getElementById("l-container"), 20, 0, 100, "l-label", "l", {
-            onchange: (sender: any, val: any, old_val: any) => {
-                let num = val as number;
-                this.spiro.l = num / 100;
-                this.board.repaint();
-            }
-        } as EventInterface);
         this.toggle_menu_btn = document.getElementById("toggle-menu-btn") as HTMLButtonElement;
-        this.turtles = [new Turtle(this.board.middle.x, this.board.middle.y, 0, this.board.canvas)];
         this.spiro = generate_random_spirograph(this.board.width, this.board.height, 0, 0);
         this.board.repaint();
     }
@@ -76,11 +67,7 @@ class SpinoGraphApp {
 
     private onboardrepaint(sender: any): void {
         //this.spiro.draw(this.board.ctx);
-    }
-
-    public turtle(i: number): Turtle {
-        if (i >= this.turtles.length) return null;
-        return this.turtles[i];
+        this.gear_system.draw(this.board.ctx);
     }
 }
 
