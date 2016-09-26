@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Spinographs</title>
+
+    <link rel="stylesheet" href="css/style.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+
+    <script src="lib/componenthandler.js" charset="utf-8"></script>
+    <script src="lib/textfield.js" charset="utf-8"></script>
+    <script src="lib/slider.js" charset="utf-8"></script>
+    <script data-main="build/app" src="lib/require.js" charset="utf-8"></script>
+
+</head>
+
+<body>
+    <canvas id="board">Your broswer doesn't support canvas.</canvas>
+    <div class="spirograph-interface">
+        <button id="toggle-menu-btn" class="hamburger hamburger--3dx shadow-2dp" type="button" style="background-color: #fbc02d;">
+          <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+          </span>
+        </button>
+        <div id="settings-panel" class="panel panel-column shadow-2dp" style="opacity: 0;">
+            <div class="panel panel-row slider-text-panel" id="R-container"></div>
+            <div class="panel panel-row slider-text-panel" id="r-container"></div>
+            <div class="panel panel-row slider-text-panel" id="l-container"></div>
+
+            <hr>
+        </div>
+    </div>
+</body>
+
+</html>

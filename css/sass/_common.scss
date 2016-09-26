@@ -1,0 +1,22 @@
+$color-black: "0,0,0";
+$color-primary: "63,81,181";
+
+$preferred_font: 'Roboto', 'Helvetica', 'Arial', sans-serif !default;
+$performance_font: 'Helvetica', 'Arial', sans-serif !default;
+
+$animation-curve-fast-out-slow-in: cubic-bezier(0.4, 0, 0.2, 1) !default;
+$animation-curve-linear-out-slow-in: cubic-bezier(0, 0, 0.2, 1) !default;
+$animation-curve-fast-out-linear-in: cubic-bezier(0.4, 0, 1, 1) !default;
+$animation-curve-default: $animation-curve-fast-out-slow-in !default;
+
+$appear-animation-delay: 100ms;
+$appear-animation-duration: 1s;
+$appear-animation-name: fade_in_down;
+$disappear-animation-name: fade_out_up;
+$appear-animation-curve: $animation-curve-default;
+
+$shadow-key-umbra-opacity: 0.2 !default;
+$shadow-key-penumbra-opacity: 0.14 !default;
+$shadow-ambient-shadow-opacity: 0.12 !default;
+
+$palette-red-A700: "213,0,0";
