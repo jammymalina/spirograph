@@ -33,7 +33,7 @@ export class Gear {
         this.generate_gear();
     }
 
-    public generate_gear(): void {
+    private generate_gear(): void {
         let n = this.teeth;
         let r2 = Math.abs(this.radius);
         let r0 = r2 - this.radius_offset.x;
@@ -67,14 +67,14 @@ export class Gear {
         this.gear = new Path2D(path);
     }
 
-    public draw(ctx: any, rot: number, transform_order: string = "tr"): void {
+    public draw(ctx: any, rot_rad: number = 0, transform_order: string = "rt"): void {
         ctx.save();
-        if (transform_order == "tr") {
-            ctx.translate(this.x, this.y);
-            ctx.rotate(rot);
-        } else if (transform_order == "rt") {
-            ctx.translate(this.x, this.y);
-            ctx.rotate(rot);
+        for (let i = transform_order.length - 1; i >= 0; i--) {
+            if (transform_order[i] == "t") {
+                ctx.translate(this.x, this.y);
+            } else if (transform_order[i] == "r") {
+                ctx.rotate(rot_rad);
+            }
         }
         ctx.beginPath();
         if (this.fill_colour) {
@@ -167,19 +167,20 @@ export class GearSystem {
         planet_rotation
     } = {
         center: new vec2(0, 0),
-        annulus: new Gear(new vec2(0, 0), 80, 300, true, new vec3(8, 8, 20), { colour: { r: 104, g: 59, b: 183 } as Colour, line_width: 1 } as StrokeStyle),
+        annulus: new Gear(new vec2(0, 0), 80, 400, true, new vec3(8, 8, 20), { colour: { r: 104, g: 59, b: 183 } as Colour, line_width: 1 } as StrokeStyle),
         planet: new Gear(new vec2(0, 0), 32, 100, false, new vec3(8, 8, 15), { colour: { r: 255, g: 152, b: 0 } as Colour, line_width: 1 } as StrokeStyle),
-        planet_rotation: 0
+        planet_rotation: Math.PI / 2
     }) {
         this.annulus = annulus;
         this.annulus.center = center;
         this.planet = planet;
-        this.planet.center = center;
+        this.planet.x = center.x + this.annulus.radius - this.planet.radius;
+        this.planet.y = center.y;
         this.planet_rotation = planet_rotation;
     }
 
     public draw(ctx: any) {
-        this.annulus.draw(ctx, 0);
-        this.planet.draw(ctx, this.planet_rotation);
+        this.annulus.draw(ctx);
+        this.planet.draw(ctx, this.planet_rotation, "tr");
     }
 }
